@@ -9,6 +9,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -32,13 +33,13 @@
           <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" id="dark">
-              <li><a class="dropdown-item" href="/cart.html">Mi Carrito</a></li>
-              <li><a class="dropdown-item" href="/my-profile.html">Mi Perfil</a></li>
-              <li><a class="dropdown-item" href="#" id="cerrar">Cerrar Sesion</a></li>
+            <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dark">
+              <li><a class="dropdown-item text-center" href="/my-profile.html"><span id="fa-user"><i class="fas fa-user"></i> </span>Mi Perfil</a></li>
+              <li><a class="dropdown-item text-center" href="/cart.html"><span id="fa-cart"><i class="fas fa-cart-arrow-down"></i> </span> Mi Carrito</a> </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-center" href="#" id="cerrar"><span id="fa-session"><i class="fas fa-user-lock"></i> </span>Cerrar Sesion</a></li>
             </ul>
           </div>
-          
           <li class="nav-item">
           </li>
         </ul>
@@ -46,12 +47,210 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Carrito</h4>
+    <br>
+    <form class="needs-validation" novalidate>
+    <div class="container text-center">
+      <h1>Carrito de compras</h1>
+    </div>
+    <div class="container card p-3 bg-white col-4 w-auto h-auto">
+      <h3 class="container">Articulos a comprar</h3>
+    <div class="container " id="mostrar">
+    </div>
+    </div>
+    <br>
+    <div class="container card p-3 bg-white col-4 w-auto h-auto">
+      <div class="container ">
+        <h3>Tipo de envio</h3>
+        <input type="radio" name="tipoDeEnvio" value=0.15 checked>Premium 2 a 5 dias(15%) <br>
+        <input type="radio" name="tipoDeEnvio" value=0.07>Express 5 a 8 dias(7%) <br>
+        <input type="radio" name="tipoDeEnvio" value=0.05>Standard 12 a 15 dias(5%) <br>
+        <br><h3>Direccion de envio</h3>
+        <br>
+        <div class="row">
+          <div class="col-12">
+            
+            <label for="validationCustom01" class="form-label">Calle</label>
+            <input type="text" class="form-control" placeholder="Ej: 18 de Julio" required>
+            <div class="invalid-feedback">
+              Agregar Calle
+            </div>
+            <div class="valid-feedback">
+              Calle Ingresada Correctamente
+            </div>
+          </div>
+          
+          <div class="col"><br>
+            <label for="validationCustom02" class="form-label">Esquina</label>
+            <input type="text" class="form-control" placeholder="Ej: Fernandez Crespo" required>
+            <div class="invalid-feedback">
+              Agregar Esquina
+            </div>
+            <div class="valid-feedback">
+              Esquina Ingresada Correctamente
+            </div>
+          </div>
+          <div class="col"> <br>
+          
+            <label for="validationCustom03" class="form-label">Numero</label>
+            <input type="text" minlength="1" maxlength="20" class="form-control" placeholder="Ej: 1530" required >
+            <div class="invalid-feedback">
+              Agregar Numero de puerta
+            </div>
+            <div class="valid-feedback">
+              Numero Ingresado Correctamente
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <br>
+   
+    <div class="container card p-3 bg-white col-4 w-auto h-auto">
+    
+      <h3>Costos</h3>
+    
+    
+    <div class="container card" >
+      <div class="card-body">
+        <div class="card-title d-flex">
+          <h5 class="me-auto">Subtotal</h5>
+          <h5 class="text-end text-muted">USD <span id="costo"></span></h5>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted">Costo unitario del producto por cantidad </h6>
+      </div>
+    </div>
+    <div class="container card" >
+      <div class="card-body">
+        <div class="card-title d-flex">
+          <h5 class="me-auto">Costo de envio</h5>
+          <h5 class="text-end text-muted">USD <span id='porcentajeEnvio'></span></h5>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted">Segun el tipo de envio</h6>
+      </div>
+    </div>
+    <div class="container card" >
+      <div class="card-body">
+        <div class="card-title d-flex">
+          <h5 class="me-auto">Total($)</h5>
+          <h5 class="text-end">USD <span id='total'></span></h5>
+        </div>
+      </div>
+    </div>
+    <br>
+    <h3>Forma de pago</h3>
+    <div class="input-group">
+      <input type="text" id="seleccion" class="form-control" placeholder="No se ha seleccionado ningun metodo de pago" aria-label="Recipient's username" maxlength="0" aria-describedby="button-addon2" required>
+      <button id="hola" class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar forma de pago</button>
+      <div class="invalid-feedback">
+        Ingresar Metodo de pago
+      </div>
+      <div class="valid-feedback">
+        Metodo Ingresado Correctamente
+      </div>
+    </div>
+    </div>
+    <br>
+    <div class="container d-grid ">
+      <button class="btn btn-primary" type="submit" >Finalizar compra</button>
+    </div>
+  </form>
+
+    <!-- Modal -->
+    <form class="needs-validation" id="formDeModal" novalidate>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Tarjeta de credito
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    
+                    <input id="tarjetaCredito" type="radio" name="formaDePago" value="Tarjeta de credito">Tarjeta de credito
+                    <hr>
+                    <div class="row gy-3">
+                      <div class="col-md-6">
+                      <label for="cc-name" class="form-label">Número de tarjeta</label>
+                      <input type="tel" class="form-control" placeholder="####-####-####-####" maxlength="18" id="numeroDeTarjeta" pattern="[0-9]{13,18}" required>
+                      <div class="invalid-feedback">
+                        Ingresar tarjeta valida (entre 13 y 18 digitos)
+                      </div>
+                      <div class="valid-feedback">
+                        Tarjeta Ingresada Correctamente
+                      </div>
+                      </div>
+                      <div class="col-md-6">
+                      <label for="cc-number" class="form-label">Codigo de seg(CVV)</label>
+                      <input type="tel" class="form-control" placeholder="###" maxlength="3" id="cvv" pattern="[0-9]{3}" required>
+                      <div class="invalid-feedback">
+                        Ingresar Codigo valido (3 digitos)
+                      </div>
+                      <div class="valid-feedback">
+                        Codigo Ingresado Correctamente
+                      </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                      <label for="cc-expiration" class="form-label">Vencimiento (MM/AA)</label>
+                      <input type="text" class="form-control" minlength="5" maxlength="5" id="vencimiento" placeholder="MM/AA" required>
+                      <div class="invalid-feedback">
+                        Ingresar fecha (Formato valido MM/AA)
+                      </div>
+                      <div class="valid-feedback">
+                        Fecha Ingresada Correctamente
+                      </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Transferencia bancaria
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <input id= "transferenciaBancaria" type="radio" name="formaDePago" value="Transferencia bancaria">Transferencia bancaria
+                    <br>
+                    <hr>
+                    <div class="row gy-3">
+                      <div class="col-md-8">
+                      <label for="cc-name" class="form-label">Número de cuenta</label>
+                      <input type="tel" class="form-control text-center" maxlength="24" placeholder="####-####-####-####-####" id="numeroDeCuenta" pattern="[0-9,a-z,A-Z]{14,24}" required>
+                      <div class="invalid-feedback">
+                        Ingresar numero de cuenta (Entre 14 y 24 digitos)
+                      </div>
+                      <div class="valid-feedback">
+                        Transferencia Ingresada Correctamente
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="guardar">Cerrar</button>
+            <button type="submit" class="btn btn-primary" id="sweetAlert">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

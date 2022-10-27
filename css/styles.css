@@ -22,6 +22,7 @@ nav a {
   user-select: none;
 }
 
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
@@ -212,6 +213,45 @@ a.custom-card:hover {
 #estrellas {
   color: orange;
 }
+
+#basura {
+  color: rgb(189, 13, 13);
+}
+
+#fa-user {
+  color: #0087F7;
+  
+}
+
+#fa-cart {
+  color: green;
+}
+
+#fa-session {
+  color: rgb(189, 13, 13);
+}
+
+#e-mercado {
+  color: #D12D90;
+  font-size: xxx-large;
+  letter-spacing: 4px;
+}
+
+#inicio{
+  background-color: #D12D90;
+}
+
+#e-pass{
+  color: #D12D90;
+}
+
+#e-user{
+  color: #D12D90;
+}
+
+
+
+
 
 
 

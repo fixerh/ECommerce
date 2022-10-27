@@ -3,7 +3,8 @@ let items = PRODUCT_INFO_URL + PROD_ID + EXT_TYPE;
 let comentarios = PRODUCT_INFO_COMMENTS_URL + PROD_ID + EXT_TYPE;
 let infoProductos = [];
 let infoComentarios =[];
-
+let arrayDelCarrito = [];
+let carritoId = localStorage.getItem('carrito')
 
 function mostrarImagenes(infoProductos) {
         let htmlContentToAppend = `
@@ -48,6 +49,7 @@ function infoDelProducto(infoProductos){
         precioMonedaHTML.innerHTML = infoProductos.currency + ' ' + infoProductos.cost;
         let categoryHTML = document.getElementById('categoria'); 
         categoryHTML.innerHTML = infoProductos.category;
+        
     
 }
 
@@ -119,7 +121,6 @@ function nuevoComentario() {
 
 function relatedProducts(){
     let info = infoProductos.relatedProducts;
-    
 
     for(let i = 0; i < info.length; i++){
 
@@ -137,11 +138,42 @@ function relatedProducts(){
         
     document.getElementById("ContenedorProductosRel").innerHTML += htmlContent;
     }
-}
+} 
 
 function setProductRelID(id) {
     localStorage.setItem("prodID", id);
     location.href = "product-info.html";
+}
+
+function AgregarAlCarrito(array) {
+
+    
+
+    let infoToCart = {};
+    infoToCart.name = array.name;
+    infoToCart.unitCost = array.cost;
+    infoToCart.image = array.images[0];
+    infoToCart.currency = array.currency;
+
+    
+
+    arrayDelCarrito.push(infoToCart);
+    localStorage.setItem('carrito', JSON.stringify(arrayDelCarrito))
+
+    Swal.fire({
+        title: "Agregado al carrito con exito",
+        icon: 'success',
+        cancelButtonText:'Continuar comprando',
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Ir al carro'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "cart.html"
+        }
+    })
+    
+
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -167,6 +199,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById("comentar").addEventListener("click", () => {
         nuevoComentario()  
     });
+
+
+
+    if (carritoId != null) {
+        arrayDelCarrito = JSON.parse(localStorage.getItem('carrito'))
+    }
     
 
 })

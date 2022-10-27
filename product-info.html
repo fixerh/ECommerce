@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -33,10 +34,11 @@
           <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" id="dark">
-              <li><a class="dropdown-item" href="/cart.html">Mi Carrito</a></li>
-              <li><a class="dropdown-item" href="/my-profile.html">Mi Perfil</a></li>
-              <li><a class="dropdown-item" href="#" id="cerrar">Cerrar Sesion</a></li>
+            <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dark">
+              <li><a class="dropdown-item text-center" href="/my-profile.html"><span id="fa-user"><i class="fas fa-user"></i> </span>Mi Perfil</a></li>
+              <li><a class="dropdown-item text-center" href="/cart.html"><span id="fa-cart"><i class="fas fa-cart-arrow-down"></i> </span> Mi Carrito</a> </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-center" href="#" id="cerrar"><span id="fa-session"><i class="fas fa-user-lock"></i> </span>Cerrar Sesion</a></li>
             </ul>
           </div>
           <li class="nav-item">
@@ -47,19 +49,21 @@
   </nav>
   <main>
     <br>
+    <div class="container card p-3 bg-white w-auto h-auto">
     <div class="container">
-    <h1 id="nombre"></h1>
-    <hr>
-    <br>
-    <h4>Precio</h4>
-    <p id="precio"></p>
-    <h4>Descripcion</h4>
-    <p id="descripcion"></p>
-    <h4>Categoria</h4>
-    <p id="categoria"></p>
-    <h4>Cantidad de vendidos</h4>
-    <p id="vendidos"></p>
-    <h4>Imagenes ilustrativas</h4>
+      <div class="d-flex">
+        <h1 class="me-auto p-1" id="nombre"></h1>
+        <h3 class="p-1" id="precio"></h3>
+      </div>
+      <hr>
+      <h4>Descripcion</h4>
+      <p id="descripcion"></p>
+      <div class="d-flex">
+        <h5 class="me-auto">Ventas: <span id="vendidos"></span> unidades</h5>
+        <h5>Categoria: <button type="button" id="categoria" class="btn btn-outline-success"></button></h5>
+        
+      </div>
+    <h3>Imagenes ilustrativas</h3>
     </div>
     <div class="container d-flex justify-content-center">
       <div id="carouselExampleDark" class="carousel carousel-dark slide"data-bs-ride="carousel">
@@ -76,8 +80,15 @@
         </button> 
       </div>
       <hr>
+      
     </div><br>
     <div class="container">
+    <input type="button" class="btn btn-success col-12" value="Agregar al Carrito" onclick="AgregarAlCarrito(infoProductos)">
+    </div>
+    
+    <br>
+    
+    <div class="container ">
       <h3>Comentarios</h3>
     </div>
     <div class="container" id="comentarios">
@@ -98,6 +109,7 @@
         <br>
       <input id="comentar" type="submit" value="Enviar" style="width:80px;height:35px;">
     </div>
+  </div>
     <br>
     <div class="container" id="obj">
     <hr>
