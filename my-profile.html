@@ -29,6 +29,7 @@
 </head>
 
 <body>
+  <!-- BarraNavegacionYDropDownMenu -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -47,7 +48,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="email" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dark">
               <li><a class="dropdown-item text-center" href="my-profile.html"><span id="fa-user"><i class="fas fa-user"></i> </span>Mi Perfil</a></li>
@@ -62,13 +63,109 @@
       </div>
     </div>
   </nav>
+  <!-- FinBarraNavegacionYDropDownMenu -->
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Perfil</h4>
+    <!-- Registro -->
+    <form class="row g-3 needs-validation" novalidate>
+      <header class="py-5 bg-image-full" id="imagen123">
+        <div class="text-center my-5" >
+          <img class="rounded-circle mt-5" width="200px"  id="imgCargada">
+          <h1 class="text-white fs-3 fw-bolder">Usuario</h1>
+          <h5 class="text-white-80 mb-0" id="usuario"></h5>
+        </div>
+    </header>
+    <div class="container p-3 mb-2 bg-transparent text-dark " >
+      
+      <div class="row">
+        <h1>Mi Perfil</h1> <hr>
+       
+        <input class="btn btn-secondary " type="file" id="imgAgregada">
+        <div class="col-12 border-right">
+            <div class="p-3 py-5">
+                <div class="row mt-2">
+                  <div class="col-md-6">
+                    <label class="labels">Nombre (*)</label>
+                    <input placeholder="Nombre" class="form-control form-control-lg" id="nombre" type="text" style="font-size: medium;" required>
+                    <div class="invalid-feedback">
+                      Campo Obligatorio (Ingresar Nombre)
+                    </div>
+                    <div class="valid-feedback">
+                      Datos Ingresados con Exito
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="labels">Apellido (*)</label>
+                    <input placeholder="Apellido" class="form-control form-control-lg" id="apellido" type="text" style="font-size: medium;" required>
+                    <div class="invalid-feedback">
+                      Campo Obligatorio (Ingresar Apellido)
+                    </div>
+                    <div class="valid-feedback">
+                      Datos Ingresados con Exito
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-2">
+                    <label class="labels">Segundo Nombre</label>
+                    <input placeholder="Segundo Nombre" class="form-control form-control-lg" id="sNombre" type="text" style="font-size: medium;">
+                    <div class="valid-feedback">
+                      Campo No Obligatorio
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-2">
+                    <label class="labels">Segundo Apellido</label>
+                    <input placeholder="Segundo Apellido" class="form-control form-control-lg" id="sApellido" type="text" style="font-size: medium;">
+                    <div class="valid-feedback">
+                      Campo No Obligatorio
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label class="labels">Numero</label>
+                    <input placeholder="Telefono" class="form-control form-control-lg" id="telefono" type="text" style="font-size: medium;">
+                    <div class="valid-feedback">
+                      Campo No Obligatorio
+                    </div>
+                  </div>
+                  <div class="col-md-12 mt-3">
+                    <label class="labels">Email (*)</label>
+                    <input placeholder="Email" class="form-control form-control-lg" type="text" style="font-size: medium;" id="emailPerfil" disabled>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <label class="labels">Pais</label>
+                    <input type="text" id="pais" class="form-control" placeholder="Pais" value="">
+                    <div class="valid-feedback">
+                      Campo No Obligatorio
+                    </div>
+                    <p class="text-danger">Los campos con (*) son obligatorios</p>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="labels">Departamento</label>
+                    <input type="text" id="departamento" class="form-control" value="" placeholder="Departamento">
+                    <div class="valid-feedback">
+                      Campo No Obligatorio
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                   <br>
+                  <button class="btn btn-primary profile-button" type="submit" id="btn-enviar">
+                    Guardar Perfil
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </form>
+  
+    <!-- FinRegistro -->
+    
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -78,11 +175,14 @@
         2022</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
+ 
   </footer>
+  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
   <script src="js/session.js"></script>
+  
 </body>
 
 </html>

@@ -251,6 +251,43 @@ a.custom-card:hover {
 
 
 
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+#emailPerfil{
+  background-color: white;
+}
+
+#imagen123 {
+  background-image: url('/img/fondoPerfil.jpg')
+}
+
+#h{
+  height: 53.5px;
+}
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

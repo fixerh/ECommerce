@@ -1,11 +1,12 @@
-const ORDER_ASC_BY_NAME = "AZ";
-const ORDER_DESC_BY_NAME = "ZA";
-const ORDER_BY_PROD_COUNT = "Cant.";
-let currentCategoriesArray = [];
-let currentSortCriteria = undefined;
-let minCount = undefined;
-let maxCount = undefined;
+const ORDER_ASC_BY_NAME = "AZ"; //Constante del orden ascendente de los nombres
+const ORDER_DESC_BY_NAME = "ZA"; //Constante del orden descendente de los nombres
+const ORDER_BY_PROD_COUNT = "Cant."; //Constante del orden de la cantidad 
+let currentCategoriesArray = []; //Variable que crea la array
+let currentSortCriteria = undefined; //Variable que le asigna el valor undefined 
+let minCount = undefined; //Variable que le asigna el valor undefined 
+let maxCount = undefined; //Variable que le asigna el valor undefined 
 
+//Funcion de ordenar por nombre y cantidad las categorias
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -35,11 +36,13 @@ function sortCategories(criteria, array){
     return result;
 }
 
+//Funcion que recibe el localStorage  y redirecciona
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
 
+//Funcion que muestra las categorias en lista
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -71,6 +74,7 @@ function showCategoriesList(){
     }
 }
 
+//Funcion para mostrar y ordenar las categorias
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 

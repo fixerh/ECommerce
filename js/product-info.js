@@ -1,11 +1,13 @@
-const PROD_ID= localStorage.getItem('prodID');
-let items = PRODUCT_INFO_URL + PROD_ID + EXT_TYPE;
-let comentarios = PRODUCT_INFO_COMMENTS_URL + PROD_ID + EXT_TYPE;
-let infoProductos = [];
-let infoComentarios =[];
-let arrayDelCarrito = [];
-let carritoId = localStorage.getItem('carrito')
+const PROD_ID= localStorage.getItem('prodID'); //Constante que obtiene informacion del local
+let items = PRODUCT_INFO_URL + PROD_ID + EXT_TYPE; //Variable que trae informacion del JSON para mostrar los productos
+let comentarios = PRODUCT_INFO_COMMENTS_URL + PROD_ID + EXT_TYPE; //Variable que trae informacion del JSON para mostrar los comentarios
+let infoProductos = []; //Variable que crea un array para la informacion de los productos
+let infoComentarios =[]; //Variable que crea un array para la informacion de los comentarios
+let arrayDelCarrito = []; //Variable que crea un array para enviar al carrito
+let carritoId = localStorage.getItem('carrito') //Variable que obtiene informacion del carrito carrito
 
+//Funcion para mostrar las imagenes de los productos con un carrusel
+//Sin for ya que son siempre la misma cantidad de imagenes
 function mostrarImagenes(infoProductos) {
         let htmlContentToAppend = `
             <div class="carousel-item active">
@@ -23,7 +25,8 @@ function mostrarImagenes(infoProductos) {
         document.getElementById('mostrar').innerHTML = htmlContentToAppend;
         
 }
-    
+
+//Funcion de puntaje para mostrar estrellas en los comentarios
 function puntaje(array){
         let puntos = "";
     
@@ -38,6 +41,7 @@ function puntaje(array){
         return puntos;
 }
 
+//Funcion para mostrar la informacion de los productos
 function infoDelProducto(infoProductos){
         let pNombreHTML = document.getElementById('nombre'); 
         pNombreHTML.innerHTML = infoProductos.name;
@@ -53,6 +57,8 @@ function infoDelProducto(infoProductos){
     
 }
 
+//Funcion para mostrar los comentarios de los productos
+//Tiene for ya que cada producto tiene diferente cantidad de comentarios
 function mostrarComentarios(infoComentarios){
         let comento = "";
 
@@ -78,6 +84,7 @@ function mostrarComentarios(infoComentarios){
     }
 }
 
+//Funcion para agregar un nuevo comentario
 function nuevoComentario() {
 
     let comentarioNuevo = document.getElementById("comentario").value;
@@ -99,26 +106,21 @@ function nuevoComentario() {
     fecha = hoy.getFullYear() + "-" + mes + "-" + dia + " " + hora;
     
     
-    let nuevoComment =
-    `<div class= "card p-3 bg-white col-md-4 w-auto h-auto">
-    <div class="d-flex flex-start align-items-center">
-        <div class="user d-flex flex-row align-items-center">
-            <span><medium class="font-weight-bold text-primary">${sessionStorage.getItem('usuario')}</medium><br> 
-            <p class="font-weight-bold">${comentarioNuevo}</p></span>
-        </div>
-    </div>
-    <div class="action d-flex justify-content-between mt-2 align-items-center" id='miFecha'>
-            ${fecha}
-    </div>
-    <div class="icons position-absolute bottom-0 end-0">
-            ${puntaje(estrellasNuevas)}
-            </div>
-        </div>`
+    let nuevoComment = {}
+    
+    nuevoComment.user = sessionStorage.getItem('email').split('@')[0];
+    nuevoComment.description = document.getElementById('comentario').value;
+    nuevoComment.dateTime = fecha;
+    nuevoComment.score = document.getElementById('puntajeComentario').value;
 
-    document.getElementById("comentarios").innerHTML += nuevoComment;
+    infoComentarios.push(nuevoComment)
+    mostrarComentarios(infoComentarios)
+
+    nuevoComment.description = document.getElementById('comentario').value = ''
+    nuevoComment.score = document.getElementById('puntajeComentario').value = ''
 };
 
-
+//Funcion para mostrar los productos relacionados
 function relatedProducts(){
     let info = infoProductos.relatedProducts;
 
@@ -140,11 +142,13 @@ function relatedProducts(){
     }
 } 
 
+//Funcion para recibir la informacion del local y redireccionar
 function setProductRelID(id) {
     localStorage.setItem("prodID", id);
     location.href = "product-info.html";
 }
 
+//Funcion para agregar el producto al carro
 function AgregarAlCarrito(array) {
 
     
@@ -176,6 +180,7 @@ function AgregarAlCarrito(array) {
 
 }
 
+//DOM
 document.addEventListener('DOMContentLoaded',()=>{
     getJSONData(items).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -184,10 +189,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             mostrarImagenes(infoProductos);
             infoDelProducto(infoProductos);
             relatedProducts(infoProductos)
-            
-            
-        }
-        
+        }   
     })
     getJSONData(comentarios).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -199,12 +201,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById("comentar").addEventListener("click", () => {
         nuevoComentario()  
     });
-
-
-
     if (carritoId != null) {
         arrayDelCarrito = JSON.parse(localStorage.getItem('carrito'))
-    }
-    
-
+    } 
 })

@@ -1,12 +1,13 @@
-let productos = [];
-let enlace = PRODUCTS_URL + localStorage.getItem('catID') + EXT_TYPE;
-const oAscendentePrecio = "0-9";
-const oDescendentePrecio = "9-0";
-const oVendidos = "Ventas";
-let criterioDeOrdenar = undefined;
-let minCost = undefined;
-let maxCost = undefined;
+let productos = []; //Variable que crea una array
+let enlace = PRODUCTS_URL + localStorage.getItem('catID') + EXT_TYPE; //Variable que trae el JSON del lugar indicado
+const oAscendentePrecio = "0-9"; //Constante para ordenar Ascendentemente los precios
+const oDescendentePrecio = "9-0"; //Constante para ordenar Descendentemente los precios
+const oVendidos = "Ventas"; //Constante para ordenar las ventas
+let criterioDeOrdenar = undefined; //Variable que le asigna el valor undefined 
+let minCost = undefined; //Variable que le asigna el valor undefined 
+let maxCost = undefined; //Variable que le asigna el valor undefined 
 
+//Funcion creada para ordenar los precios y las ventas
 function ordenar(criteria, array){
     let result = [];
     if (criteria === oAscendentePrecio)
@@ -36,6 +37,7 @@ function ordenar(criteria, array){
     return result;
 }
 
+//Funcion mostrar todos los productos en forma de lista
 function mostrarLista(array){
     let htmlContentToAppend = "";
 
@@ -67,11 +69,13 @@ function mostrarLista(array){
     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 }
 
+//Funcion para recibir la informacion del local y redireccionar
 function setProductID(id) {
     localStorage.setItem("prodID", id);
     location.href = "product-info.html";
 }
 
+//Funcion para buscar productos
 function busca(productos) {
     let busqueda = document.getElementById('buscador').value;
     
@@ -86,6 +90,7 @@ function busca(productos) {
     
 }
 
+//Funcion para ordenar y mostrar los productos
 function ordenoYMuestro(sortCriteria){
     
     criterioDeOrdenar = sortCriteria;
@@ -95,10 +100,7 @@ function ordenoYMuestro(sortCriteria){
     mostrarLista(productos);
 }
 
-
-
-
-
+//DOM
 document.addEventListener("DOMContentLoaded", ()=> {
     getJSONData(enlace).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -122,6 +124,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         ordenoYMuestro(oVendidos);
     });
 
+    //Evento click para limpiar los filtros
     document.getElementById("limpiarFiltro").addEventListener("click", ()=> {
         document.getElementById("rPrecioMin").value = "";
         document.getElementById("rPrecioMax").value = "";
@@ -132,6 +135,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         mostrarLista(productos);
     });
 
+    //Evento click para filtrar por precio
     document.getElementById("filtro").addEventListener("click", ()=> {
         minCost = document.getElementById("rPrecioMin").value;
         maxCost = document.getElementById("rPrecioMax").value;
@@ -153,7 +157,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         mostrarLista(productos);
     });
 
-    
+    //Evento key up para buscar los productos cada tecla que escribis
     document.getElementById('buscador').addEventListener('keyup', ()=> {
         busca(productos);
     })

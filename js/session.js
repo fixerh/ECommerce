@@ -1,6 +1,8 @@
+//Script para iniciar sesion desde cualquier lugar
+//DOM
 document.addEventListener('DOMContentLoaded', ()=>{
-    let usuario = sessionStorage.getItem('usuario');
-    if(usuario == null){
+    let email = sessionStorage.getItem('email');
+    if(email == null){
         Swal.fire({
             title: "Usted no ha iniciado sesion",
             icon: 'warning',
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
     else {
         document.getElementById('cerrar').style.display = 'block';
-        document.getElementById('usuario').innerHTML = usuario;
+        document.getElementById('email').innerHTML = email.split('@')[0];
     }
 
     document.getElementById("cerrar").addEventListener("click", () => {
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
         })
         sessionStorage.clear();
+        localStorage.clear()
         
     });
 });

@@ -1,3 +1,4 @@
+//Dom con eventos de click para traer la informacion del local y redireccionar
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);

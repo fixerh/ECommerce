@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- BarraNavegacionYDropDownMenu -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -32,7 +33,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="email" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dark">
               <li><a class="dropdown-item text-center" href="my-profile.html"><span id="fa-user"><i class="fas fa-user"></i> </span>Mi Perfil</a></li>
@@ -47,84 +48,67 @@
       </div>
     </div>
   </nav>
-  <main>
-    <br>
+  <!-- FinBarraNavegacionYDropDownMenu -->
+  <main><br>
     <div class="container card p-3 bg-white w-auto h-auto">
-    <div class="container">
-      <div class="d-flex">
-        <h1 class="me-auto p-1" id="nombre"></h1>
-        <h3 class="p-1" id="precio"></h3>
+      <div class="container">
+        <div class="d-flex">
+          <h1 class="me-auto p-1" id="nombre"></h1>
+          <h3 class="p-1" id="precio"></h3>
+        </div>
+        <hr>
+        <h4>Descripcion</h4>
+        <p id="descripcion"></p>
+        <div class="d-flex">
+          <h5 class="me-auto">Ventas: <span id="vendidos"></span> unidades</h5>
+          <h5>Categoria:<button type="button" id="categoria" class="btn btn-outline-success"></button></h5>
+        </div>
+        <h3>Imagenes ilustrativas</h3>
       </div>
-      <hr>
-      <h4>Descripcion</h4>
-      <p id="descripcion"></p>
-      <div class="d-flex">
-        <h5 class="me-auto">Ventas: <span id="vendidos"></span> unidades</h5>
-        <h5>Categoria: <button type="button" id="categoria" class="btn btn-outline-success"></button></h5>
-        
+      <div class="container d-flex justify-content-center">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide"data-bs-ride="carousel">
+          <div id="mostrar" class="carousel-inner"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button> 
+        </div>
+        <hr>
+      </div><br>
+      <div class="container">
+        <input type="button" class="btn btn-success col-12" value="Agregar al Carrito" onclick="AgregarAlCarrito(infoProductos)">
+      </div><br>
+      <div class="container ">
+        <h3>Comentarios</h3>
       </div>
-    <h3>Imagenes ilustrativas</h3>
-    </div>
-    <div class="container d-flex justify-content-center">
-      <div id="carouselExampleDark" class="carousel carousel-dark slide"data-bs-ride="carousel">
-  
-        <div id="mostrar" class="carousel-inner"></div>
-  
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button> 
+      <div class="container" id="comentarios">
+      </div>  <br>
+      <div class="container">
+        <h3>Comentar</h3>
+        <h5>Tu opinion</h5>
+        <p><textarea  id ="comentario" class ="form-control" placeholder =" Ingresa tu comentario " type =" texto " style="height:146px;" > </textarea></p>
+        <h5>Puntuacion</h5>
+          <select class="form-select" style="width:150px;" id="puntajeComentario">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+        <input id="comentar" type="submit" value="Enviar" style="width:80px;height:35px;">
       </div>
-      <hr>
-      
     </div><br>
-    <div class="container">
-    <input type="button" class="btn btn-success col-12" value="Agregar al Carrito" onclick="AgregarAlCarrito(infoProductos)">
-    </div>
-    
-    <br>
-    
-    <div class="container ">
-      <h3>Comentarios</h3>
-    </div>
-    <div class="container" id="comentarios">
-    </div>
-    <br>
-    <div class="container">
-      <h3>Comentar</h3>
-      <h5>Tu opinion</h5>
-      <p><textarea  id ="comentario" class ="form-control" placeholder =" Ingresa tu comentario " type =" texto " style="height:146px;" > </textarea></p>
-      <h5>Puntuacion</h5>
-        <select class="form-select" style="width:150px;" id="puntajeComentario">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <br>
-      <input id="comentar" type="submit" value="Enviar" style="width:80px;height:35px;">
-    </div>
-  </div>
-    <br>
     <div class="container" id="obj">
-    <hr>
-    <br>
+    <hr><br>
     </div>
     <div class="container">
       <h5><b>Productos realacionados:</b></h5>
-      <div class="row gx-3 my-5" id="ContenedorProductosRel">
-
-      </div>
-
+      <div class="row gx-3 my-5" id="ContenedorProductosRel"></div>
     </div>
-    
-    
-    
     </main>
   <footer class="text-muted">
     <div class="container">

@@ -26,31 +26,27 @@ function mostrarCarrito(array){
         
         
         htmlContentToAppend += `
-        
-        
             <div class="card mb-3">
-            
-            <div class="row g-0 ">
-           
-                <div class="col-md-2">
-                     <img src="${MuestroProductos.image}" class="img-fluid rounded-start" alt="..."">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p class="position-absolute end-0 p-1 bg-dark border text-white">Cantidad <input id="cantidad${i}" type="number" min ="1" value="1" onchange='subtotal(addCart[${i}],${i}),totalDeCompra()' style ="max-width: 50px"></p>
-                        <h5 class="card-title"><b>${MuestroProductos.name}</b></h5>   
+                <div class="row g-0 ">
+                    <div class="col-md-3 ">
+                        <img src="${MuestroProductos.image}" class="img-fluid rounded-start" alt="..."">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body row">
+                            <h5 class="card-title col-lg-9"><b>${MuestroProductos.name}</b></h5>   
+                            <span class="input-group-text bg-dark text-white col-lg-3">Cantidad:
+                            <input class="form-control" id="cantidad${i}" type="number" min ="1" value="1" onchange='subtotal(addCart[${i}],${i}),totalDeCompra()'>
+                            </span>
+                        </div>
+                        <div class= 'bg-dark row g-0 card-footer' id='h'>
+                            <p class="text-white col-5 " >Precio: ${MuestroProductos.currency} <span>${MuestroProductos.unitCost}</p>
+                            <p class="borrar col-2 text-center" style ="max-width: 310px"><i id='basura' class="fas fa-trash-alt cursor-active"></i></p>
+                            <p class="text-white text-center col-5">Subtotal U$S <span class="precios" id='subtotal${i}'>${MuestroProductos.unitCost}</p>
+                        </div>  
                     </div>
                 </div>
             </div>
-            
-            <div  class="card-footer text-muted d-flex bg-dark" style="height: 40px;" >
-            <p class="me-auto text-white" >Precio: ${MuestroProductos.currency} <span>${MuestroProductos.unitCost}</p>
-            <p class="col-5 borrar" style ="max-width: 310px"><i id='basura' class="fas fa-trash-alt cursor-active"></i></p>
-            <p class="text-white">Subtotal U$S <span class="precios" id='subtotal${i}'>${MuestroProductos.unitCost}</p>
-            </div>
-            </div>
         `
-        
     }
     
     document.getElementById('mostrar').innerHTML = htmlContentToAppend;
@@ -138,8 +134,10 @@ function eliminar(i) {
                 icon: 'success',
                 title: '!Has comprado con exito!',
                 showConfirmButton: false,
-                timer: 3000
-              })
+                timer: 2000
+              }).then(() => {
+                window.location = "index.html"
+                })
           }
   
           form.classList.add('was-validated')
@@ -183,20 +181,24 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     })
 
+    
+
+    //For para el evento del porcentaje
     for (let i=0; i< porcentaje.length; i++){
         porcentaje[i].addEventListener('click',()=> {
             totalDeCompra()
         })
     }
 
+    //Eventos para deshabilitar los input del metodo de pago
     tarjeta.addEventListener('click', ()=>{
         disabled();
     })
-
     transferencia.addEventListener('click', ()=>{
         disabled();
     })
     
+    //Evento para la validacion de la modal
     boton.addEventListener('click',(e)=>{
         if (sweet.checkValidity()){
             e.preventDefault();
