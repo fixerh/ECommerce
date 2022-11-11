@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             e.preventDefault();
             e.stopPropagation();
             document.getElementById('seleccion').value = document.getElementById('exampleModalLabel').innerHTML;
+            document.getElementById('seleccion').disabled = true
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',

@@ -11,25 +11,24 @@ let carritoId = localStorage.getItem('carrito') //Variable que obtiene informaci
 function mostrarImagenes(infoProductos) {
         let htmlContentToAppend = `
             <div class="carousel-item active">
-            <img src="${infoProductos.images[0]}" class="d-block w-40">
+                <img src="${infoProductos.images[0]}" class="d-block w-100">
             </div>
             <div class="carousel-item">
-            <img src="${infoProductos.images[1]}" class="d-block w-40">
+                <img src="${infoProductos.images[1]}" class="d-block w-100">
             </div>
             <div class="carousel-item">
-            <img src="${infoProductos.images[2]}" class="d-block w-40">
+                <img src="${infoProductos.images[2]}" class="d-block w-100">
             </div>
             <div class="carousel-item">
-            <img src="${infoProductos.images[3]}" class="d-block w-40">
+                <img src="${infoProductos.images[3]}" class="d-block w-100">
             </div>` 
         document.getElementById('mostrar').innerHTML = htmlContentToAppend;
-        
 }
 
 //Funcion de puntaje para mostrar estrellas en los comentarios
 function puntaje(array){
         let puntos = "";
-    
+
         for(let i=1; i <= 5; i++){
             if(i <= array){
                 puntos += `<i class="fas fa-star" id= 'estrellas'></i>`;
@@ -65,18 +64,19 @@ function mostrarComentarios(infoComentarios){
     for (let i = 0; i < infoComentarios.length; i++){
         let comentan = infoComentarios[i];
         
-        comento += `<div class= "card p-3 bg-white col-md-4 w-auto h-auto">
-        <div class="d-flex flex-start align-items-center">
-            <div class="user d-flex flex-row align-items-center">
-                <span><medium class="font-weight-bold text-primary">${comentan.user}</medium><br> 
-                <p class="font-weight-bold">${comentan.description}</p></span>
-            </div>
-        </div>
-        <div class="action d-flex justify-content-between mt-2 align-items-center">
-            ${comentan.dateTime}
-        </div>
-        <div class="icons position-absolute bottom-0 end-0">
-                ${puntaje(comentan.score)}
+        comento += `
+            <div class= "card p-3 bg-white col-md-4 w-auto h-auto">
+                <div class="d-flex flex-start align-items-center">
+                    <div class="user d-flex flex-row align-items-center">
+                        <span><medium class="font-weight-bold text-primary">${comentan.user}</medium><br> 
+                        <p class="font-weight-bold">${comentan.description}</p></span>
+                    </div>
+                </div>
+                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                    ${comentan.dateTime}
+                </div>
+                <div class="icons position-absolute bottom-0 end-0">
+                    ${puntaje(comentan.score)}
                 </div>
             </div>`
 
@@ -86,9 +86,6 @@ function mostrarComentarios(infoComentarios){
 
 //Funcion para agregar un nuevo comentario
 function nuevoComentario() {
-
-    let comentarioNuevo = document.getElementById("comentario").value;
-    let estrellasNuevas = document.getElementById('puntajeComentario').value;
     let hoy = new Date ();
     let dia = hoy.getDate();
     let mes = hoy.getMonth() + 1;
@@ -204,4 +201,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if (carritoId != null) {
         arrayDelCarrito = JSON.parse(localStorage.getItem('carrito'))
     } 
+    document.getElementById('categoria').addEventListener('click',()=>{
+        window.location.href = 'products.html'
+    })
 })

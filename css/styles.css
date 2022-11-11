@@ -262,12 +262,19 @@ a.custom-card:hover {
 }
 
 #imagen123 {
-  background-image: url('/img/fondoPerfil.jpg')
-}
+  background: rgb(98,95,174);
+  background: linear-gradient(180deg, rgba(98,95,174,1) 0%, rgba(177,84,109,1) 75%, rgba(78,44,103,1) 100%); 
+} 
+
 
 #h{
   height: 53.5px;
 }
+
+#seleccion{
+  background-color: white;
+}
+
 
 
 
