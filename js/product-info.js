@@ -163,7 +163,9 @@ function AgregarAlCarrito(array) {
 
     Swal.fire({
         title: "Agregado al carrito con exito",
-        icon: 'success',
+        imageUrl: 'img/sendtocart.gif',
+        imageWidth: 200,
+        imageHeigth: 100,
         cancelButtonText:'Continuar comprando',
         showCancelButton: true,
         showCloseButton: true,

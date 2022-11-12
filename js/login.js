@@ -15,10 +15,12 @@ function login () {
                 event.stopPropagation()
                 sessionStorage.setItem('email', email);
                 Swal.fire({
-                    title: "Inicio de sesion correcto",
-                    icon: 'success',
-                    timer: 1000,
-                    showConfirmButton:false
+                    footer: "<h3>¡¡Inicio de sesion correcto!!</h3>",
+                    imageUrl: 'img/unlock.gif',
+                    imageWidth: 200,
+                    imageHeigth: 100,
+                    showConfirmButton:false,
+                    timer:3600
                 }).then(() => {
               window.location = "index.html"
                 })

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(email == null){
         Swal.fire({
             title: "Usted no ha iniciado sesion",
-            icon: 'warning',
+            imageUrl: 'img/log in.gif',
             confirmButtonText: 'Iniciar Sesion'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -21,12 +21,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById("cerrar").addEventListener("click", () => {
         Swal.fire({
             title: "Usted ha cerrado sesion",
-            icon: 'warning',
-            confirmButtonText: 'Volver a iniciar'
-        }).then((result) => {
-            if (result.isConfirmed) {
+            imageUrl: 'img/lock.gif',
+            showConfirmButton:false,
+            timer:1800
+
+        }).then(() => {
+            
               window.location = "login.html"
-            }
+           
         })
         sessionStorage.clear();
         localStorage.clear()

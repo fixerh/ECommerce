@@ -131,10 +131,10 @@ function eliminar(i) {
             event.stopPropagation()
             Swal.fire({
                 position: 'top-center',
-                icon: 'success',
+                imageUrl: 'img/comprarealizada.gif',
                 title: '!Has comprado con exito!',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 2500
               }).then(() => {
                 window.location = "index.html"
                 })
@@ -198,21 +198,24 @@ document.addEventListener('DOMContentLoaded',()=>{
         disabled();
     })
     
+    let dataModal = new bootstrap.Modal(document.getElementById('exampleModal'))
     //Evento para la validacion de la modal
     boton.addEventListener('click',(e)=>{
         if (sweet.checkValidity()){
             e.preventDefault();
             e.stopPropagation();
+            dataModal.hide()
             document.getElementById('seleccion').value = document.getElementById('exampleModalLabel').innerHTML;
             document.getElementById('seleccion').disabled = true
             Swal.fire({
                 position: 'top-center',
-                icon: 'success',
+                imageUrl: 'img/paycard.gif',
                 title: 'Forma de pago aprobada', 
-                text: 'Tocar cerrar para continuar',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1800
             })
+            
         }
+
     })  
 })

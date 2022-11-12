@@ -60,7 +60,7 @@ function checkDatos(){
             guardarDatos()
             Swal.fire({
                 position: 'top-center',
-                icon: 'success',
+                imageUrl: 'img/perfilsaved.gif',
                 title: 'Datos Guardados Exitosamente',
                 showConfirmButton: false,
                 timer: 2500
